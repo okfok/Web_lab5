@@ -40,7 +40,14 @@ function on_load(){
         document.cookie = "max-digit=;"
         console.log(document.cookie)
     } else {
-        on_click()
+        let num = prompt("Please enter your number:", "")
+    if (num == null || num == ""){
+        return
+    }
+    let max_digit = maxDigit(num)
+    document.cookie = `max-digit=${max_digit};`;
+    window.alert(max_digit + " saved to cookies!")
+    console.log(document.cookie)
     }
 }
 
@@ -51,15 +58,4 @@ function maxDigit(n){
     else{
       return Math.max(n%10, Math.floor(maxDigit(n/10)));
     }
-  }
-
-function on_click(){
-    let num = prompt("Please enter your number:", "")
-    if (num == null || num == ""){
-        return
-    }
-    let max_digit = maxDigit(num)
-    document.cookie = `max-digit=${max_digit};`;
-    window.alert(max_digit + " saved to cookies!")
-    console.log(document.cookie)
 }
