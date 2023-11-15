@@ -76,27 +76,27 @@ function on_load(){
     })
 
     document.getElementById("box-select").addEventListener("select", (event) => {
-        
+
     })
 
 
 
 
-    // let max_digit = getCookie("max-digit")
-    // if (max_digit != ""){
-    //     window.alert(max_digit + " in cookies!\nAfter pressing ok it will be deleted!")
-    //     document.cookie = "max-digit=;"
-    //     console.log(document.cookie)
-    // } else {
-    //     let num = prompt("Please enter your number:", "")
-    // if (num == null || num == ""){
-    //     return
-    // }
-    // let max_digit = maxDigit(num)
-    // document.cookie = `max-digit=${max_digit};`;
-    // window.alert(max_digit + " saved to cookies!")
-    // console.log(document.cookie)
-    // }
+    let max_digit = getCookie("max-digit")
+    if (max_digit != ""){
+        window.alert(max_digit + " in cookies!\nAfter pressing ok it will be deleted!")
+        document.cookie = "max-digit=;"
+        console.log(document.cookie)
+    } else {
+        let num = prompt("Please enter your number:", "")
+    if (num == null || num == ""){
+        return
+    }
+    let max_digit = maxDigit(num)
+    document.cookie = `max-digit=${max_digit};`;
+    window.alert(max_digit + " saved to cookies!")
+    console.log(document.cookie)
+    }
 }
 
 
