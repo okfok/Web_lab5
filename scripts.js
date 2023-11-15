@@ -37,7 +37,8 @@ function on_load(){
     let max_digit = getCookie("max-digit")
     if (max_digit != ""){
         window.alert(max_digit + " in cookies!\nAfter pressing ok it will be deleted!")
-        document.cookie = ""
+        document.cookie = "max-digit=;"
+        console.log(document.cookie)
     } else {
         on_click()
     }
