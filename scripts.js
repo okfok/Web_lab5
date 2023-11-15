@@ -33,23 +33,75 @@ function on_load(){
 
     document.getElementById("box5").innerHTML += side1 * side2
 
+    document.getElementById("radiobuttons").addEventListener("mouseout", set_align)
+    function set_align(){
+        if (document.getElementById("right").checked){
+            document.getElementById("box2").style.textAlign = "right"
+            document.getElementById("box4").style.textAlign = "right"
+            document.getElementById("box5").style.textAlign = "right"
+    
+        }
+        else {
+            document.getElementById("box2").style.textAlign = ""
+            document.getElementById("box4").style.textAlign = ""
+            document.getElementById("box5").style.textAlign = ""
+    
+        }
+    }
 
-    let max_digit = getCookie("max-digit")
-    if (max_digit != ""){
-        window.alert(max_digit + " in cookies!\nAfter pressing ok it will be deleted!")
-        document.cookie = "max-digit=;"
-        console.log(document.cookie)
+    const radio_default = document.getElementById("default")
+    const radio_right = document.getElementById("right")
+
+    if(localStorage.getItem("value")){
+        radio_default.checked = false
+        radio_right.checked = true
+
     } else {
-        let num = prompt("Please enter your number:", "")
-    if (num == null || num == ""){
-        return
+        radio_default.checked = true
+        radio_right.checked = false
     }
-    let max_digit = maxDigit(num)
-    document.cookie = `max-digit=${max_digit};`;
-    window.alert(max_digit + " saved to cookies!")
-    console.log(document.cookie)
-    }
+
+
+    set_align()
+
+    
+    
+    radio_default.addEventListener("change", (event) => {
+        localStorage.removeItem("value")
+
+    })
+    
+    radio_right.addEventListener("change", (event) => {
+        localStorage.setItem("value", true)
+    })
+
+    document.getElementById("box-select").addEventListener("select", (event) => {
+        
+    })
+
+
+
+
+    // let max_digit = getCookie("max-digit")
+    // if (max_digit != ""){
+    //     window.alert(max_digit + " in cookies!\nAfter pressing ok it will be deleted!")
+    //     document.cookie = "max-digit=;"
+    //     console.log(document.cookie)
+    // } else {
+    //     let num = prompt("Please enter your number:", "")
+    // if (num == null || num == ""){
+    //     return
+    // }
+    // let max_digit = maxDigit(num)
+    // document.cookie = `max-digit=${max_digit};`;
+    // window.alert(max_digit + " saved to cookies!")
+    // console.log(document.cookie)
+    // }
 }
+
+
+
+
 
 function maxDigit(n){
     if(n == 0){ 
