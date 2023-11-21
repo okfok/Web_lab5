@@ -75,8 +75,32 @@ function on_load(){
         localStorage.setItem("value", true)
     })
 
-    document.getElementById("box-select").addEventListener("select", (event) => {
 
+    for (let i = parseInt(localStorage.getItem("length"))-1; i >= 0; i--){
+        
+        localStorage.removeItem(i)
+    }
+
+
+    localStorage.setItem("length", 0)
+
+    document.getElementById("box-select").addEventListener("change", (event) => {
+        const input = document.getElementById("input")
+        if (input){
+            input.remove()
+        }
+        document.getElementById("box" + event.target.value).innerHTML += `<div id="input">
+        <input id="text-input">
+        <button id="input_button">add to list</button>
+        </div>`
+        document.getElementById("input_button").addEventListener("click", (event) => {
+            const i = document.getElementById("text-input")
+            let length = localStorage.getItem("length")
+            localStorage.setItem(length, i.value)
+            localStorage.setItem("length", parseInt(length)+1)
+            draw_list()
+        })
+        
     })
 
 
@@ -109,5 +133,18 @@ function maxDigit(n){
         }
     else{
       return Math.max(n%10, Math.floor(maxDigit(n/10)));
+    }
+}
+
+
+
+
+function draw_list(event){
+    const lst = document.getElementById("list")
+    let list = localStorage.getItem("list")
+    lst.innerHTML = ""
+    for (let i = 0; i < localStorage.getItem("length"); i++){
+
+        lst.innerHTML += "<li>" + localStorage.getItem(i) + "</li>"
     }
 }
